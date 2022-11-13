@@ -1,4 +1,2 @@
-### Interactive shell for the storage engine
-- To quickly use the database engine to manipulate stored data.
-
-## Usage
+# Interactive shell for the storage engine
+More details in the root [README.md file](https://github.com/bdasgupta02/order-warehouse/blob/main/README.md).
