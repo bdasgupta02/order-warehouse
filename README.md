@@ -75,7 +75,8 @@ This makes it a very enticing and fun problem to think about - especially given 
 - Deleting any order
 
 ### Nonfunctional
-- The data should be portable and scalable, as large-scale data would need to scale horizontally
+- The potentially large amounts of data would need to scale horizontally through partitioning/sharding
+- The data could benefit from being portable, as it would improve its accessibility and mobility
 - Ingestions of files and order insertions should be fast, as this would hypothetically be a read-heavy storage system.
 - The underlying data should be tolerant to faults, as a minor corruption somewhere should not compromize an organization's entire repository of order-book data
 - Queries should be fast as well, especially since the engine shouldn't manually query all historic state before a queried time to generate a snapshot of the order-book
@@ -138,7 +139,7 @@ storage/
 - Insertions can be made individually for each order, or by file ingestion
 - As for file ingestions, as stated in the assumptions the data needs to be cleaned and sorted according to epoch, and follow the following format:
 ```
-epoch   id    symbol    side(BUY/SELL)    category(NEW/TRADE/CANCEL)    price    quantity
+epoch  |  id  |  symbol  |  side(BUY/SELL)  |  category(NEW/TRADE/CANCEL)  |  price  |  quantity
 ```
 - For examples of this file format, please check the `.log` files within `tests/test-ingest`
 - Ingestions are well-optimized if the orders are being appended on top of temporally previous orders, without any orders already stored for the future
