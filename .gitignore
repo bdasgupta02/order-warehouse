@@ -1,0 +1,7 @@
+*.exe
+*.out
+*.dat
+*.txt
+
+.vscode
+/storage
