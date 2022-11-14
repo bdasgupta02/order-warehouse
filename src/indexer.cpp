@@ -39,8 +39,8 @@ void EpochIndexer::read()
     if (!std::filesystem::exists(file_dir + IDX))
         return;
 
-    std::vector<epoch_data> nodes;
-    std::ifstream fin(file_dir, std::ios::in | std::ios::binary);
+    std::vector<uint64_t> nodes;
+    std::ifstream fin(file_dir + IDX, std::ios::in | std::ios::binary);
 
     uint64_t epoch;
     fin.read((char *)&epoch, sizeof(uint64_t));
@@ -51,7 +51,7 @@ void EpochIndexer::read()
 
     for (int i = 0; i < header; i++)
     {
-        epoch_data new_node;
+        uint64_t new_node;
         fin.read((char *)&new_node, sizeof(epoch_data));
         nodes.push_back(new_node);
     }
@@ -74,7 +74,7 @@ void EpochIndexer::flush()
 
     for (int i = 0; i < tree_size; i++)
         fout.write((char *)&nodes[i], sizeof(epoch_data));
-
+        
     fout.close();
 }
 
