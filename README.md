@@ -94,7 +94,7 @@ The system therefore needs to optimize to make this less painful (more on this l
 - Although this is more of a concept, only one instance of this project will be active at any given point
 - All data for file ingestions will be cleaned and sorted according to epoch prior to ingestion, and will be text-based
 
-### Supported order types (for both buy and sell side)
+### Supported order types (for both buy and sell sides)
 - **NEW:** A new order entry that is available to trade
 - **TRADE:** An order which trades any matching NEW orders before its epoch, and thus removing the quantity of the trading price from the order-book. Note that this would be on the same side, as a BUY trade would trade away previous NEW BUY orders
 - **CANCEL:** Removes a quantity from a price, from the order-book
