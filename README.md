@@ -13,9 +13,9 @@ This makes it a very enticing and fun problem to think about - especially given 
 This therefore made it *too fun of a problem to not try and solve.*
 
 ## Contents
+- [Motivation](#motivation)
 - [Tech stack](#tech-stack)  
 - [Quick start](#quick-start)
-- [Motivation](#motivation)
 - [Requirements](#requirements)
 - [Storage format](#storage-format)
 - [Functionality](#functionality)
@@ -34,7 +34,7 @@ Automated tests however provide a more in-depth view into how it can be used in 
 <br /><br /> Do note that both options below should be done from the root directory.
 
 ### Running interactive shell
-The interactive shell supports insertions of singular orders, updates, deletions and queries. It also has its own query language (CQL), which is explained by using the `/help` command.
+The interactive shell supports insertions of singular orders, updates, deletions and queries. It also has its own query language (CQL), which is explained by using the `/help` command. Just compile the `shell.cpp` file, as well as the following implementations in C++ 20.
 ```
 > g++ -std=c++2a -I . shell/shell.cpp src/order_book.cpp src/shared.cpp src/p_query.cpp src/p_insert.cpp src/p_delete.cpp src/avl_tree.cpp src/indexer.cpp src/p_update.cpp -o shell.out
 > ./shell.out
@@ -59,6 +59,7 @@ The shell has a basic command parser to interact with the shell using text comma
 ```
 
 ### Running automated tests
+Just compile the `run_tests.cpp` file, as well as the following implementations in C++ 20.
 ```
 > g++ -std=c++2a -I . tests/run_tests.cpp src/order_book.cpp src/shared.cpp src/p_query.cpp src/p_insert.cpp src/p_delete.cpp src/avl_tree.cpp src/indexer.cpp src/p_update.cpp -o test.out
 > ./test.out
