@@ -186,7 +186,8 @@ Automated tests are written for all major components of the project, albeit thro
 - Historic insertions, updates and deletions are slow if they are before already entered future orders
 - Race conditions apply for different processes/instances of this application (especially bad news for the precious indexer system)
 - Prices are in type `double`, since this is a concept of an idea
-- Knowledge about how something like this would be used more closely
+- Saving aggregated base state to every chunk file might have a size issue when there are a lot of orders with different prices (as each would be a new entry on the base staet tables). This would take more disk space, and also slow down queries
+- I need more knowledge about how something like this would be used more closely
 
 ## Future improvements
 - Query for multiple timestamps at once can be made more efficient through a one-pass disk access, instead of epoch by epoch
