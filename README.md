@@ -46,9 +46,9 @@ The shell has a basic command parser to interact with the shell using text comma
         INSERT <symbol> AT <epoch> VALUES <id> <side:BUY/SELL> <category:NEW/TRADE/CANCEL> <price> <quantity>
 
 [delete order by epoch-id pair for a symbol]
-        DELETE <symbol> AT <epoch> <id>
+        DELETE <symbol> WITH <epoch> <id>
 
-[update order by epoch-id pair for a symbol]
+[update order by epoch-id pair for a symbol with other values]
         UPDATE <symbol> WITH <epoch> <id> VALUES <side:BUY/SELL> <category:NEW/TRADE/CANCEL> <price> <quantity>
 ```
 
@@ -138,6 +138,7 @@ storage/
 - A binary format (with .dat files) will be used to store all data
 - Using a binary format saves space as most of the data is numerical (as opposed to string-based formats)
 - Using a binary format also decreases overheads for type casting/conversions
+- All data stored inside the `.dat` files would be numerical
 
 ## Functionality
 ### Insertions
@@ -146,7 +147,7 @@ storage/
 ```
 epoch  |  id  |  symbol  |  side(BUY/SELL)  |  category(NEW/TRADE/CANCEL)  |  price  |  quantity
 ```
-- For examples of this file format, please check the `.log` files within `tests/test-ingest`
+- For examples of this file format, please check the `.log` files within `tests/test-ingest`. This format is also how the engine uses to store data inside the chunk files for each individual order
 - Ingestions are well-optimized if the orders are being appended on top of temporally previous orders, without any orders already stored for the future
 
 ### Queries
