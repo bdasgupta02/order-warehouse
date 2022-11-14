@@ -79,6 +79,8 @@ bool optimized_file_ingestion(Config *conf,
     unsigned long last_trade_price = header.last_trade_price;
     uint64_t last_trade_epoch = header.last_trade_epoch;
 
+    EpochIndexer *idx = conf->get_or_create_index(symbol);
+
     bool first = true;
     while (std::getline(source, file_line))
     {
@@ -91,7 +93,7 @@ bool optimized_file_ingestion(Config *conf,
             fout.close();
 
             uint64_t window_start = generate_epoch_window(conf, line_order.epoch);
-            conf->indexes[symbol]->add(window_start);
+            idx->add(window_start);
 
             if (!first)
                 edit_header(chunk_curr_name, header);
@@ -175,7 +177,8 @@ bool ingest_file_exists(PInsert *inserter,
     source.close();
 
     Order line_order = convert_line_order(first_line);
-    if (inserter->conf->indexes[symbol]->exists_higher(line_order.epoch))
+    EpochIndexer *idx = inserter->conf->get_or_create_index(symbol);
+    if (idx->exists_higher(line_order.epoch))
     {
         PQuery processor(inserter->conf);
         QueryResult query = processor.query_timestamp(line_order.epoch, line_order.symbol);

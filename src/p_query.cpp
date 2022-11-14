@@ -2,6 +2,7 @@
 #include "include/order_book.hpp"
 #include "header.hpp"
 #include "shared.hpp"
+#include "indexer.hpp"
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
@@ -98,7 +99,8 @@ QueryResult PQuery::query_timestamp(uint64_t epoch, std::string symbol)
         return QueryResult();
 
     // calculating
-    std::vector<uint64_t> file_epochs = conf->indexes[symbol]->epoch_list();
+    EpochIndexer *idx = conf->get_or_create_index(symbol);
+    std::vector<uint64_t> file_epochs = idx->epoch_list();
 
     // if there are no orders on or before this epoch, empty result is returned
     if (file_epochs.empty() || epoch < file_epochs[0])
