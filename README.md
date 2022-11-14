@@ -79,7 +79,7 @@ Just compile the `run_tests.cpp` file, as well as the following implementations 
 - The potentially large amounts of data would need to scale horizontally through partitioning/sharding
 - The data could benefit from being portable, as it would improve its accessibility and mobility
 - Ingestions of files and order insertions should be fast, as this would hypothetically be a read-heavy storage system.
-- The underlying data should be tolerant to faults, as a minor corruption somewhere should not compromize an organization's entire repository of order-book data
+- The underlying data should be tolerant to faults, as a minor corruption somewhere should not compromise an organization's entire repository of order-book data
 - Queries should be fast as well, especially since the engine shouldn't manually query all historic state before a queried time to generate a snapshot of the order-book
 - Low memory/CPU overhead, especially for file ingestions which can take significant overhead for buffers etc.
 - Must provide abstraction for the end-developer, as they should see the warehouse as one big bucket to store and pull data from - instead of knowing the underlying complexities
@@ -105,7 +105,7 @@ As the freshness of ingredients are the key to a good dish, the design of the un
 
 ### Dual-partitioning
 ![Partitioning](https://lh6.googleusercontent.com/5hkeK0shyLQDbklk5QyDL1yQ5bZ9w33wEVjwx4zmdK6XvSfzcbNVusarZbHFeDW_nEg=w2400)
-- To ensure fault-tolerance, scalability, replicability, and portability, the underlying data strcture is designed to be partitioned very easily - and with minimal dependency between the partitions
+- To ensure fault-tolerance, scalability, replicability, and portability, the underlying data structure is designed to be partitioned very easily - and with minimal dependency between the partitions
 - The data is therefore partitioned both by the ticker symbol of a financial product, as well as small time window (in terms of nanosecond-based epoch from 1 January 1970 00:00:00)
 - As detailed in the next section, only a single partitioned chunk is needed to find the data for any time within the epoch window
 - This sort of dependency segregation for queries implies that **larger amount of files do not slow down queries**, which is neat
@@ -170,7 +170,7 @@ epoch  |  id  |  symbol  |  side(BUY/SELL)  |  category(NEW/TRADE/CANCEL)  |  pr
 ### Indexing chunk time windows using AVL trees
 - In this system, an AVL tree is used to index **chunk file epochs** according to epoch windows for fast searches, insertions and deletions
 - AVL trees will be loaded onto memory when the server begins, and serialized then flushed to the disk on updates concurrently to save time
-- All index lookups/searches/manipulation would be done on-memory, to make it very fast (as opposed to reading from disk everytime)
+- All index lookups/searches/manipulation would be done on-memory, to make it very fast (as opposed to reading from disk every time)
 - Instead of every update, an alternative would be to have indexes be flushed to the disk periodically
 - Red-black trees were another option to slightly improve writes, but I choose AVL trees due to personal expertise, and speed up reads slightly
 
@@ -192,7 +192,7 @@ Automated tests are written for all major components of the project, albeit thro
 - Historic insertions, updates and deletions are slow if they are before already entered future orders
 - Race conditions apply for different processes/instances of this application (especially bad news for the precious indexer system)
 - Prices are in type `double`, since this is a concept of an idea
-- Saving aggregated base state to every chunk file might have a size issue when there are a lot of orders with different prices (as each would be a new entry on the base staet tables). This would take more disk space, and also slow down queries
+- Saving aggregated base state to every chunk file might have a size issue when there are a lot of orders with different prices (as each would be a new entry on the base state tables). This would take more disk space, and also slow down queries
 - I need more knowledge about how something like this would be used more closely
 
 ## Future improvements
