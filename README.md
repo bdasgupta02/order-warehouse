@@ -10,6 +10,7 @@ This project also has minimal dependencies, and relies solely on the C++ standar
 The project was interesting in the way that it transcends tracking a value of an item - like normal time-series - rather requiring the knowledge of past events at any given point of time. 
 This is because order-book data at any queried time needs to contain the state of all orders before that period, since different quantity-price pairs available previously will be available into the future unless they are traded or cancelled.
 This makes it a very fun problem to think about - especially given the fact that querying all historical orders before a time to derive an order-book is simply not practical.
+<br /><br /> So at the core of this project lies the tricky balance between fast insertions and fast queries.
 
 ## Contents
 - [Motivation](#motivation)
