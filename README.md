@@ -1,6 +1,6 @@
 # Persistent storage engine concept for an order-book data warehouse
 
-This is a core storage engine for a medium-large scale data warehouse for time-series order-book data for financial trading. 
+This is a core storage engine for a medium-large scale data warehouse for time-series order-book data for limit orders. 
 Built to support efficient retrieval (for instance, for research processes) and large-scale data storage, 
 this engine is designed to provide order-book snapshot data at a queried time relatively fast.
 Although optimized for fast temporally-linear file ingestions, insertions and fast queries, this engine also supports updates and deletions to data.
