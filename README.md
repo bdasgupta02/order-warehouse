@@ -103,7 +103,7 @@ The system therefore needs to optimize to make this less painful (more on this l
 ## Storage format
 As the freshness of ingredients are the key to a good dish, the design of the underlying data format sits at the core of how the system optimises for its functional and nonfunctional needs. 
 
-### Dual-partiotioning
+### Dual-partitioning
 ![Partitioning](https://lh6.googleusercontent.com/5hkeK0shyLQDbklk5QyDL1yQ5bZ9w33wEVjwx4zmdK6XvSfzcbNVusarZbHFeDW_nEg=w2400)
 - To ensure fault-tolerance, scalability, replicability, and portability, the underlying data strcture is designed to be partitioned very easily - and with minimal dependency between the partitions
 - The data is therefore partitioned both by the ticker symbol of a financial product, as well as small time window (in terms of nanosecond-based epoch from 1 January 1970 00:00:00)
