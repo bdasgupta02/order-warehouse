@@ -115,13 +115,16 @@ As the freshness of ingredients are the key to a good dish, the design of the un
 - Each file stores the order data for a given epoch window (default at 10 minute-windows, but can be adjusted to any number). Each file will be named by the epoch at which the window starts, within a folder named by the symbol ticker name. For instance:
 ```
 storage/
-  TWTR/
-    100.dat
+  TWTR/     <-- Symbol 
+    100.dat <-- Chunk file for an epoch window
     200.dat
     ...
+    IDX.dat <--- AVL Tree index for epoch windows
   META/
     100.dat
     200.dat
+    ...
+    IDX.dat
 ```
 - The underlying file structure would have 3 primary parts:
   - **Header:** stores the key details with regards to the sizes of the other two sections, and also the last trade details (for key statistics)
