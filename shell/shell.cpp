@@ -42,7 +42,7 @@ static const std::string HELP_MSG = (std::string) "Help Menu\n" +
                                     "[get order book at epoch]\n" +
                                     "\tSELECT <symbol> AT <epoch>\n\n" +
                                     "[order books at multiple epochs]\n" +
-                                    "\tSELECT MULTIPLE <symbol> AT <epoch1>, <epoch2>, ..\n\n" +
+                                    "\tSELECT MULTIPLE <symbol> AT <epoch1> <epoch2> .. <epoch n>\n\n" +
                                     "[insert one order into database - use engine directly for file ingestions]\n" +
                                     "\tINSERT <symbol> AT <epoch> VALUES <id> <side:BUY/SELL> <category:NEW/TRADE/CANCEL> <price> <quantity>\n\n" +
                                     "[delete order by epoch-id pair for a symbol]\n" +

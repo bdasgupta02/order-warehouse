@@ -46,7 +46,7 @@ The shell has a basic command parser to interact with the shell using text comma
         SELECT <symbol> AT <epoch>
 
 [order books at multiple epochs]
-        SELECT MULTIPLE <symbol> AT <epoch1>, <epoch2>, ..
+        SELECT MULTIPLE <symbol> AT <epoch1> <epoch2> .. <epoch n>
 
 [insert one order into database - use engine directly for file ingestions]
         INSERT <symbol> AT <epoch> VALUES <id> <side:BUY/SELL> <category:NEW/TRADE/CANCEL> <price> <quantity>
