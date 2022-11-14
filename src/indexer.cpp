@@ -1,5 +1,4 @@
 #include "indexer.hpp"
-
 #include <filesystem>
 #include <thread>
 #include <string>
@@ -17,7 +16,7 @@ EpochIndexer::~EpochIndexer()
 {
     flush();
 
-    // can make this periodic 
+    // can make this periodic
     for (std::thread &thread : flush_threads)
         thread.join();
 }
@@ -35,12 +34,12 @@ void EpochIndexer::read()
         std::filesystem::create_directory(sub_dir);
     }
 
-    std::string file_dir = data_dir + symbol + '/';
-    if (!std::filesystem::exists(file_dir + IDX))
+    std::string file_dir = data_dir + symbol + '/' + IDX;
+    if (!std::filesystem::exists(file_dir))
         return;
 
-    std::vector<uint64_t> nodes;
-    std::ifstream fin(file_dir + IDX, std::ios::in | std::ios::binary);
+    std::vector<epoch_data> nodes;
+    std::ifstream fin(file_dir, std::ios::in | std::ios::binary);
 
     uint64_t epoch;
     fin.read((char *)&epoch, sizeof(uint64_t));
@@ -74,7 +73,7 @@ void EpochIndexer::flush()
 
     for (int i = 0; i < tree_size; i++)
         fout.write((char *)&nodes[i], sizeof(epoch_data));
-        
+
     fout.close();
 }
 

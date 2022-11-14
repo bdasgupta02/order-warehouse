@@ -1,5 +1,4 @@
 #include "include/order_book.hpp"
-
 #include <algorithm>
 
 void add_new(OrderBook *book, Order &order)

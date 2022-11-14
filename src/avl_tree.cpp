@@ -33,28 +33,6 @@ int AVLNode<T>::balance_factor()
 }
 
 template <typename T>
-AVLNode<T> *AVLNode<T>::left_rotate()
-{
-    AVLNode<T> *r = right;
-    right = right->left;
-    r->left = this;
-    this->update_values();
-    r->update_values();
-    return r;
-}
-
-template <typename T>
-AVLNode<T> *AVLNode<T>::right_rotate()
-{
-    AVLNode<T> *L = left;
-    left = left->right;
-    L->right = this;
-    this->update_values();
-    L->update_values();
-    return L;
-}
-
-template <typename T>
 void AVLTree<T>::insert(T &value)
 {
     AVLNode<T> **indirect = &root;
@@ -280,6 +258,28 @@ uint64_t AVLTree<T>::first_higher(AVLNode<T> *node, T &value)
         return first_higher(node->right, value);
     else
         return first_higher(node->left, value);
+}
+
+template <typename T>
+AVLNode<T> *AVLNode<T>::left_rotate()
+{
+    AVLNode<T> *r = right;
+    right = right->left;
+    r->left = this;
+    this->update_values();
+    r->update_values();
+    return r;
+}
+
+template <typename T>
+AVLNode<T> *AVLNode<T>::right_rotate()
+{
+    AVLNode<T> *l = left;
+    left = left->right;
+    l->right = this;
+    this->update_values();
+    l->update_values();
+    return l;
 }
 
 template <typename T>

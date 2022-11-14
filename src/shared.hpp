@@ -99,7 +99,7 @@ void reconfig_ahead(Config *conf, uint64_t epoch, std::string symbol, Args... ar
         }
 
         for (auto order : {args...})
-            book.add(order);    
+            book.add(order);
 
         header.base_buy = book.buy_map.size();
         header.base_sell = book.sell_map.size();

@@ -1,5 +1,4 @@
 #include "include/p_insert.hpp"
-
 #include "include/config.hpp"
 #include "include/order.hpp"
 #include "include/order_book.hpp"
@@ -7,7 +6,6 @@
 #include "shared.hpp"
 #include "header.hpp"
 #include "indexer.hpp"
-
 #include <algorithm>
 #include <cstdio>
 #include <filesystem>
