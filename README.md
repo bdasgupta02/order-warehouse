@@ -181,10 +181,6 @@ But narrowing epoch windows would undermine speeds of updates and deletes, as th
 Another implication of decreasing chunk epoch windows would be a potential slowdown of insertions at **the middle** of stored data from a temporal perspective, as updates need to be permeated towards future windows (for base state).
 However, if all new inserted data is appended on top of old data, insertions will not slow down due to propagation of base state data.
 
-### Epoch window trade-offs
-- The epoch window size can be adjusted based on project or company needs
-- Smaller epoch windows mean faster reads at the cost of expensive insertions/updates/deletions in middle files and vice versa
-
 ### Concurrency
 - Fine-grained mutex for insertions, updates and deletions for each symbol, as well as flushing indices to disk - to improve atomicity of operations
 - Index writes to disk are done parallel to normal processes to save time
