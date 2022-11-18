@@ -199,6 +199,7 @@ Automated tests are written for all major components of the project, albeit thro
 - Query for multiple timestamps at once can be made more efficient through a one-pass disk access, instead of epoch by epoch
 - Perhaps a more generalised time-series database with aggregation support could be explored with LSM trees to optimize for writes (currently exploring the LSM process etc.)
 - Flushing of the AVL tree indices to the disk can be done periodically, rather than on every addition, to save some overhead
+- Edit history support for orders
 
 ## A radical multi-node idea
 Perhaps for the future, this underlying engine can be adapted to fit a multi-node distributed system, where different nodes/servers get their own overarching window partitions.
