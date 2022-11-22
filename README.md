@@ -57,6 +57,26 @@ The shell has a basic command parser to interact with the shell using text comma
 [update order by epoch-id pair for a symbol with other values]
         UPDATE <symbol> WITH <epoch> <id> VALUES <side:BUY/SELL> <category:NEW/TRADE/CANCEL> <price> <quantity>
 ```
+The format for all queries are as follows. Do note that for multiple epochs, this format is multiplied for each.
+```
+>>> SELECT X AT Y
+
+----------- Query results at epoch Y -----------
+
+Last traded epoch:        0
+Last traded quantity:     0
+Last traded price:        0.00
+
+Buy orders in order book:
+-------------------------
+Quantity        Price
+...             ...
+
+Sell orders in order book:
+--------------------------
+Quantity        Price
+...             ...
+```
 
 ### Running automated tests
 Just compile the `run_tests.cpp` file, as well as the following implementations in C++ 17.
