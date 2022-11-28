@@ -53,6 +53,9 @@ void EpochIndexer::read()
         uint64_t new_node;
         fin.read((char *)&new_node, sizeof(epoch_data));
         nodes.push_back(new_node);
+        
+        if (new_node != AVL_EMPTY_NODE)
+            epoch_set.insert(new_node);
     }
 
     avl_tree.deserialize(nodes);
@@ -79,12 +82,13 @@ void EpochIndexer::flush()
 
 bool EpochIndexer::find(uint64_t epoch)
 {
-    return avl_tree.exists(epoch);
+    return epoch_set.count(epoch);
 }
 
 void EpochIndexer::add(uint64_t epoch)
 {
     avl_tree.insert(epoch);
+    epoch_set.insert(epoch);
     flush_threads.push_back(std::thread([&]()
                                         { flush(); }));
 }
@@ -92,6 +96,7 @@ void EpochIndexer::add(uint64_t epoch)
 void EpochIndexer::remove(uint64_t epoch)
 {
     avl_tree.erase(epoch);
+    epoch_set.erase(epoch);
     flush_threads.push_back(std::thread([&]()
                                         { flush(); }));
 }

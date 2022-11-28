@@ -194,6 +194,9 @@ epoch  |  id  |  symbol  |  side(BUY/SELL)  |  category(NEW/TRADE/CANCEL)  |  pr
 - Instead of every update, an alternative would be to have indexes be flushed to the disk periodically
 - Red-black trees were another option to slightly improve writes, but I choose AVL trees due to personal expertise, and speed up reads slightly
 
+### Hashmap for finding epochs faster than the AVL tree
+- A hashmap is used beside the AVL tree within the indexer to quickly check if an epoch exists
+
 ### Balancing trade-offs
 There is a choice between optimizing completely for read-speeds, at the cost of update, delete, and possibly insertion speeds.
 The epoch window size for chunk files can be decreased to make queries blazingly fast, as after finding the correct file, there is less calculation to be done within that file if there are less order entries within it.

@@ -6,6 +6,7 @@
 #include <thread>
 #include <vector>
 #include <mutex>
+#include <unordered_set>
 #include <stdint.h>
 
 static const std::string IDX = "IDX.dat";
@@ -19,6 +20,8 @@ class EpochIndexer
     std::string symbol;
     std::string data_dir;
     uint64_t epoch_window;
+    
+    std::unordered_set<uint64_t> epoch_set;
 
     void read();
     void flush();
