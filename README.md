@@ -30,8 +30,6 @@ C++ 17
 
 ## Quick start
 Although this project mostly provides the underlying conceptual logic and implementation for the storage engine, it includes an easy-to-use interactive shell for quick experimenting.
-Automated tests however provide a more in-depth view into how it can be used in a full-fledged application.
-<br /><br /> Do note that both options below should be done from the root directory.
 
 ### Running interactive shell
 The interactive shell supports insertions of singular orders, updates, deletions and queries. It also has its own query language (CQL), which is explained by using the `/help` command. Just compile the `shell.cpp` file, as well as the following implementations in C++ 17.
@@ -77,15 +75,6 @@ Sell orders in order book:
 Quantity        Price
 ...             ...
 ```
-
-### Running automated tests
-Just compile the `run_tests.cpp` file, as well as the following implementations in C++ 17.
-```
-> g++ -std=c++17 -I . tests/run_tests.cpp src/order_book.cpp src/shared.cpp src/p_query.cpp src/p_insert.cpp src/p_delete.cpp src/avl_tree.cpp src/indexer.cpp src/p_update.cpp -o test
-> ./test
-```
-
-<br /> cmake will be soon added to ease these process.
 
 ## Requirements
 ### Functional
