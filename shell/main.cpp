@@ -237,11 +237,11 @@ bool process_input(std::string input, PInsert &inserter, PDelete &deleter, PUpda
 
 void run_shell()
 {
-    Config *conf = new Config("storage/");
-    PInsert inserter(conf);
-    PDelete deleter(conf);
-    PUpdate updater(conf);
-    PQuery querier(conf);
+    Config conf("storage/");
+    PInsert inserter(&conf);
+    PDelete deleter(&conf);
+    PUpdate updater(&conf);
+    PQuery querier(&conf);
 
     bool is_running = true;
     while (is_running)

@@ -31,12 +31,6 @@ C++ 17
 ## Quick start
 Although this project mostly provides the underlying conceptual logic and implementation for the storage engine, it includes an easy-to-use interactive shell for quick experimenting.
 
-### Running interactive shell
-The interactive shell supports insertions of singular orders, updates, deletions and queries. It also has its own query language (CQL), which is explained by using the `/help` command. Just compile the `shell.cpp` file, as well as the following implementations in C++ 17.
-```
-> g++ -std=c++17 -I . shell/shell.cpp src/order_book.cpp src/shared.cpp src/p_query.cpp src/p_insert.cpp src/p_delete.cpp src/avl_tree.cpp src/indexer.cpp src/p_update.cpp -o shell
-> ./shell
-```
 #### CQL (Cool Query Language)
 The shell has a basic command parser to interact with the shell using text commands, which is cool, of course. The commands are as follows:
 ```
